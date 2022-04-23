@@ -1,0 +1,121 @@
+{
+    "metadata": {
+        "yields": {
+            "activity": {
+                "generating": true,
+                "matching": true,
+                "rewriting": true    
+
+            },
+            "modification":{ 
+                "preProduction": true,
+                "preWrite": true,
+                "postWrite": true,
+                "postProduction": true 
+                },
+            "interpretRate": 1
+        }
+    },
+"alphabetCodes": [97,98],
+"schemata": [
+    {
+        "id": "sch",
+        "activeModifiers": {
+        },
+        "productionRules": [
+            {
+                    "predecessor": [0],
+                    "syntaxes": ["direct"],
+                    "metrics": [
+                        "zeroMap"],
+                    "maps": ["zeroMap"],
+                    "successors": [[0,0,1,0,0]]
+                },
+                {
+                    "predecessor": [1],
+                    "syntaxes": ["direct"],
+                    "metrics": [
+                        "zeroMap"
+                    ],
+                        "maps": ["zeroMap"],
+                        "successors": [[1,1,1]]
+                }
+            ],
+        "interpretationProtocol": ["A","B"]
+        }
+],
+"specifications": [
+    {
+        "id": "only",
+        "schema": "sch",
+        "constants": {
+            "axiom": [0],
+            "defaultParameters": [[0]],
+            "lifespan": 32,
+            "sizeLimit": 8192
+        },
+        "variables": []         
+}],
+"library": {
+    "interpreterActions": [
+                {
+                    "title":"A",
+                    "args": [
+                        "cycleCtx.messages[0]"
+                    ],
+                    "condition": "true",
+                    "equations": [
+                        "args[0] = 'A'"
+                    ]
+                },
+            {
+                "title":"B",
+                "args": [
+                    "cycleCtx.messages[0]"
+                ],
+                "condition": "true",
+                "equations": [
+                    "args[0] = 'B'"
+                ]
+            }
+    ],
+    "predecessorSyntaxes": [
+        {
+            "title": "direct",
+            "args": [
+                "matchCtx.inputWord",
+                "matchCtx.regularExpression"
+            ],
+            "condition": "args[0]?.[0]",
+            "equations": [
+                "args[1] = args[0][0]"
+            ]
+        }
+    ],
+    "predecessorMetrics": [
+        {
+            "title": "zeroMap",
+            "args": [
+                "matchCtx.inputParams"
+            ],
+            "condition": "true",
+            "equations": [
+                "args[0] = [0]"
+            ]
+        }
+    ],
+    "conditionalMaps": [
+        {
+            "title": "zeroMap",
+            "args": [
+                "matchCtx.outputParams"
+            ],
+            "condition": "true",
+            "equations": [
+                "args[0] = [[0],[0]]"
+            ]
+        }
+    ],
+    "systemModifiers": []
+}
+}

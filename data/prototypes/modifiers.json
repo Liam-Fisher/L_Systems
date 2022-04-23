@@ -1,0 +1,31 @@
+{
+    
+    "generators": {
+    "description": "",
+    "actions": [
+        {
+            "title": "recordWordLength",
+            "description": "",
+            "args": [
+                "stored.variables.wordLength",
+                "stored.letters.length"
+            ],
+            "condition": "true",
+            "equations": [
+                "args[0] = args[1]"
+            ]
+        },
+        {
+            "title": "noise",
+            "description": "",
+            "args": [
+                "stored.variables.noiseVal"
+            ],
+            "condition": "true",
+            "equations": [
+                "args[0] = Math.random()"
+            ]
+        }
+    ]
+}
+}

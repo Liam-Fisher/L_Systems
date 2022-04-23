@@ -1,0 +1,13 @@
+{
+    "direct": {
+        "description": "very simple syntax that matches a single letter",
+        "args": [
+            "matchCtx.inputWord",
+            "matchCtx.regularExpression"
+        ],
+        "condition": "args[0]?.[0]",
+        "equations": [
+            "args[1] = RegExp('('+args[0][0]+')', 'g')"
+        ]
+    }
+}

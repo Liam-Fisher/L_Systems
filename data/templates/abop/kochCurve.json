@@ -1,0 +1,150 @@
+{
+    "metadata": {
+        "alphabet": [70, 77, 80],
+        "yields": {
+            "activity": {
+                "generating": true,
+                "matching": true,
+                "rewriting": true    
+
+            },
+            "modification":{ 
+                "preProduction": true,
+                "preWrite": true,
+                "postWrite": true,
+                "postProduction": true 
+                },
+            "interpretRate": 1
+        }
+    },
+    
+"library": {
+    "interpretations": {
+        "moveForward":{
+            "args": [
+                "gCtx.variables.direction",
+                "gCtx.variables.stepSize",
+                "gCtx.variables.x_position",
+                "gCtx.variables.y_position",
+                "iCtx.messages[0]"
+            ],
+            "condition": "true",
+            "equations": [
+                "args[2] = args[2]+Math.sin(2*Math.PI*args[0])*args[1]",
+                "args[3] = args[3]+Math.cos(2*Math.PI*args[0])*args[1]",
+                "args[4] = ('lineto '+args[2].toFixed(4)+' '+args[3].toFixed(4)+' '+0)"
+            ]
+        },
+        "turnLeft": {
+            "args": [
+                "gCtx.variables.direction",
+                "gCtx.variables.turnIncrement"
+            ],
+            "condition": "true",
+            "equations": [
+                "args[0] = ((args[0]+1) - args[1])%1"
+            ]
+    },
+    "turnRight": {
+                    "args": [
+                        "gCtx.variables.direction",
+                        "gCtx.variables.turnIncrement"
+                    ],
+                    "condition": "true",
+                    "equations": [
+                        "args[0] = (args[0]+args[1])%1"
+                    ]
+            }
+        },
+    "syntaxes": {
+            "direct":{
+            "args": [
+                "pCtx.input.letters",
+                "pCtx.regex"
+            ],
+            "condition": "args[0]?.[0]",
+            "equations": [
+                "args[1] = '('+args[0][0]+')'"
+            ]
+        }
+    },
+    "metrics": {
+            "discrete":{
+            "args": [
+                "pCtx.regex",
+                "sCtx.index",
+                "gCtx.parameters",
+                "pCtx.input.parameters"
+            ],
+            "condition": "args[0]?.[args[1]]",
+            "equations": [
+                "args[3] = args[2]?.[args[0][args[1]].index] ?? [1]"
+            ]
+        }
+    },
+    "maps":  {
+            "zeroMap": {
+            "args": [
+                "pCtx.output.parameters"
+            ],
+            "condition": "true",
+            "equations": [
+                "args[0] = [[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]]"
+            ]
+        }
+    },
+    "modifiers": 
+        {
+            "noise": {
+            "args": [
+                "gCtx.variables.noiseVal"
+            ],
+            "condition": "true",
+            "equations": [
+                "args[0] = Math.random()"
+            ]
+        }
+    }
+},
+"schemata": {
+        "mono":{
+        "modifiers": {
+            "preCycle": ["noiseVal"],
+            "postCycle": ["noiseVal"]
+        },
+        "productions": [
+            {
+                    "predecessor": [0],
+                    "syntaxes": [
+                        "direct"
+                    ],
+                    "metrics": [
+                        "discrete"
+                    ],
+                        "maps": ["zeroMap"],
+                        "successors": [[0,1,2,0,2,0,2,0,0,1,0,1,0,2,0]]
+                }
+            ],
+        "interpretations": ["moveForward","turnLeft","turnRight"]
+        }
+    },
+"specifications": {
+        "only": {
+        "constants": {
+            "axiom": [0,1,0,1,0,1,0],
+            "defaultParameters": [[0],[0],[0],[0],[0],[0],[0]],
+            "schema": "mono",
+            "lifespan": 1,
+            "letterLimit": 256
+        },
+        "variables": {
+            "noiseVal": 0,
+            "x_position": 0,
+            "y_position": 0,
+            "stepSize": 0.01,
+            "direction": 0,
+            "turnIncrement": 0.25
+            }
+        }       
+}
+}

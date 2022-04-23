@@ -1,0 +1,19 @@
+{
+    "simple": {
+    "description": "",
+    "actions": [
+    {
+        "title": "zeroMap",
+        "description": "",
+        "args": [
+            "matchCtx.inputParams",
+            "matchCtx.outputParams"
+        ],
+        "condition": "true",
+        "equations": [
+            "args[1] = (new Array(14)).fill(args[0]?.[0] ?? [0])"
+        ]
+    }
+]
+}
+}

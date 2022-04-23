@@ -1,0 +1,53 @@
+Control systems from max through messages to a node.script with main.js loaded
+Messages: control/file/edit
+
+TODOs: 
+
+SOON:
+add an initializer syntax for command sequences 
+i.e. a turtle drawing would start with 'moveto 0 0 0'
+Definitely To Do:
+add an edit function to the main.js file
+edit should allow the following:
+changing the currently stored letters/parameters/variables for a given system ID
+
+
+Definitely To Do:
+add a file function to the main.js file (maybe a separate class) OR a max patcher that does this
+should allow
+- loading new systems from disk
+- saving the current library/schemata to disk
+ // this would mean that the current system.stored would be set as the specifications for each ID
+ // could do this part with the edit function
+ // it would also require a filtering function
+ - saving message sequences as text files, into ./data/recordings 
+
+
+Definitely To Do:
+design a ui (possibly using the jsui max object) for creating new system properties
+for the library property:
+ - ui for designing and testing functions, with additional logic/testing provided by a node.script with design.js loaded 
+ (probably) - a ui for testing functions by creating a js file and loading it into node.script 
+ if a function is created it can be piped into the edit function of the main.js
+
+
+
+Maybe To Do? :
+add a "mode" property for interpreterActions:
+allow selection of these modes (turtle/drone etc...) in a schema
+allow the writing of separate message streams based on modes
+
+
+
+
+Maybe To Do? :
+add more metadata, such as:
+a "description" property for variables, attributes, and routines
+could make a separate metadata object that can be queried, with properties like:
+"processing time" : an estimated processing time
+"patchers" : list of patchers used to record implementations
+
+
+
+
+

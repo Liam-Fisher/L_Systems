@@ -1,0 +1,48 @@
+{
+"turtle": {
+    "description": "",
+    "actions": [
+        {
+            "title":"moveForward",
+            "description": "",
+            "args": [
+                "stored.variables.direction",
+                "stored.variables.stepSize",
+                "stored.variables.x_position",
+                "stored.variables.y_position",
+                "cycleCtx.messages[0]"
+            ],
+            "condition": "true",
+            "equations": [
+                "args[2] = args[2]+Math.sin(2*Math.PI*args[0])*args[1]",
+                "args[3] = args[3]+Math.cos(2*Math.PI*args[0])*args[1]",
+                "args[4] = ('lineto '+args[2].toFixed(4)+' '+args[3].toFixed(4)+' '+0)"
+            ]
+        },
+    {
+            "title": "turnLeft",
+            "description": "",
+            "args": [
+                "stored.variables.direction",
+                "stored.variables.turnIncrement"
+            ],
+            "condition": "true",
+            "equations": [
+                "args[0] = ((args[0]+1) - args[1])%1"
+            ]
+    },
+    {
+            "title": "turnRight",
+            "description": "",
+            "args": [
+                "stored.variables.direction",
+                "stored.variables.turnIncrement"
+            ],
+            "condition": "true",
+            "equations": [
+                "args[0] = (args[0]+args[1])%1"
+            ]
+    }
+]
+}
+}
