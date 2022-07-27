@@ -30,7 +30,7 @@ movie: {  'mov' };
 model: {  'obj', 'dae' };
 }
 
-export type maxClass<component extends (keyof maxClasses)> = (keyof maxClasses[component])|(keyof templates);
+export type systemFile<component extends (keyof maxClasses)> = keyof maxClasses[component];
 export type fileExtension<component extends (keyof fileExtensions)> = keyof fileExtensions[component]; 
 
 

@@ -1,7 +1,7 @@
 import { Core } from './core';
 import { SystemClass } from '../definitions/classes/systemComponents';
 import { bufferNum, systemStage, systemStatus } from '../definitions/static/literals';
-import { maxClass } from '../definitions/static/fileio';
+import { systemFile } from '../definitions/static/fileio';
 import { State } from '../definitions/templates/stateSyntax';
 import { Schema } from '../definitions/templates/schemaSyntax';
 import { system_blueprint } from '../definitions/templates/blueprintSyntax';
@@ -63,21 +63,21 @@ export class System extends Core implements SystemClass {
             if (type === 'stream') {
                 this.activeFileStreams++;
                 this.textMap.set(file.filename,  {
-                "format": file.format as maxClass<'text'>, 
+                "format": file.format as systemFile<'text'>, 
                 "src": file?.objname ?? "default",
                 "obj": createWriteStream(formatPath(1, 'txt', file.filename, 'data', 'outputs', 'system', file.format))
                 });
             }
             else if(type === 'blob') {
                 this.blobMap.set(file.filename,  {
-                "format": file.format as maxClass<'blob'>, 
+                "format": file.format as systemFile<'blob'>, 
                 "src": file?.objname ?? "default",
                 "obj": Buffer.alloc(file?.args?.[0] ?? 256)
                 });
             }
             else {
                 this.jsonMap.set(file.filename,  {
-                "format": file.format as maxClass<'json'>,
+                "format": file.format as systemFile<'json'>,
                 "src": file?.objname ?? "default",
                 "obj": {}
                 });
