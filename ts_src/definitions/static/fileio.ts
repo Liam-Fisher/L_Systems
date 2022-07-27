@@ -5,7 +5,8 @@ import { templates } from './literals';
 export type systemOutTypes =  { 'blob', 'json', 'text'};
 export type systemOutType = keyof systemOutTypes;
 export interface networkOutTypes extends systemOutTypes { 'image', 'audio', 'movie', 'video', 'model' };
-export type networkOutType = keyof systemOutTypes;
+export type networkOutType = keyof networkOutTypes;
+
 export type maxClasses = {
 blob: { 'text', 'jit-textfile', 'buffer-'};
 // add aliases, ex. mc.cascade~ = filterdesign~,
@@ -30,7 +31,8 @@ movie: {  'mov' };
 model: {  'obj', 'dae' };
 }
 
-export type systemFile<component extends (keyof maxClasses)> = keyof maxClasses[component];
+export type systemFile<component extends (keyof systemOutTypes)> = keyof maxClasses[component];
+export type networkFile<component extends (keyof networkOutTypes)> = keyof maxClasses[component];
 export type fileExtension<component extends (keyof fileExtensions)> = keyof fileExtensions[component]; 
 
 

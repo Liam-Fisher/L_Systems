@@ -1,6 +1,6 @@
 import {el, json_el} from './generics';
 import {templates, hookTriggers, systemStage, ruleType} from './literals';
-import {systemOutType, networkOutType, maxClass, maxClasses} from './fileio';
+import {systemOutTypes, networkOutType, systemFile, maxClasses} from './fileio';
 
 export interface jsCtors {
     "Buffer": {
@@ -40,7 +40,7 @@ export interface systemData<T> {
             rules: Record<ruleType, T>
     }
 }
-    outputs: Record<systemOutType, Record<maxClass<keyof maxClasses>, T>>;
+    outputs: Record<keyof systemOutTypes, Record<systemFile<keyof systemOutTypes>, T>>;
 }
 
 

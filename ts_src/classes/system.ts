@@ -3,7 +3,6 @@ import { SystemClass } from '../definitions/classes/systemComponents';
 import { bufferNum, systemStage, systemStatus } from '../definitions/static/literals';
 import { systemFile } from '../definitions/static/fileio';
 import { State } from '../definitions/templates/stateSyntax';
-import { Schema } from '../definitions/templates/schemaSyntax';
 import { system_blueprint } from '../definitions/templates/blueprintSyntax';
 import { createWriteStream, WriteStream } from 'fs';
 
@@ -106,20 +105,4 @@ export class System extends Core implements SystemClass {
             return true;
         }
     }
-    *interpret(schema: Schema<'loaded'>) {
-        this.amounts.set('interpretation', this.letters.length);
-        for(const [filename, fileobj] of this.textMap.entries()) {
-            this.broadcastMessage(fileobj.obj, ...schema.hooks?.pre_interpretation);
-            let fileGroup = schema.interpretations?.[filename];
-        while (fileGroup&&this.update('interpretation')) {
-            let letterGroup = fileGroup[this.letters?.[this.index]];
-            this.inParams = [this.parameters[this.index]];
-            if (!this.broadcastMessage(fileobj.obj, ...letterGroup?.[this.letters[this.index]]).includes(false)) continue;
-            else yield this.status;
-        }
-        this.broadcastMessage(fileobj.obj, ...schema.hooks?.post_interpretation);
-        fileobj.obj.close(() => this.activeFileStreams--);
-    }
-    return this.status;
-}
 }

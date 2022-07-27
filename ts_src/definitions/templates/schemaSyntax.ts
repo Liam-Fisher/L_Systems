@@ -13,4 +13,4 @@ export type Schema<ctx extends loaded> = ctxType<ctx, {}, {regex?: RegExp}> & {
     hooks: hooks<systemStages, ctx>
     interpretations:  ctxType<ctx, string[][][], Record<string, Record<string, string[]>>>
 };
-export type schemataFiles = systemData<Set<string>>["templates"]["subroutine"];
+export type schemataFiles = systemData<Set<string>>["templates"]["subroutines"];
